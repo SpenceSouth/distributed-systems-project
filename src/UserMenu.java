@@ -44,6 +44,9 @@ public class UserMenu {
     }
 
     public String getUpdateLine(){
-
+        //prompts user for a new address
+        System.out.println("Please enter a valid address to replace existing line");
+        String userInput = scannerIn.next();
+        return userInput;
     }
 }

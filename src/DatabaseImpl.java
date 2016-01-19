@@ -11,8 +11,8 @@ public class DatabaseImpl extends UnicastRemoteObject implements DatabaseService
     DatabaseStructure database;
 
     //database server constructor
-    public DatabaseImpl() throws RemoteException{
-        database = new DatabaseStructure();
+    public DatabaseImpl(DatabaseStructure database) throws RemoteException{
+        this.database = database;
     }
 
     //synchronized call to get the number of lines
@@ -54,8 +54,4 @@ public class DatabaseImpl extends UnicastRemoteObject implements DatabaseService
 
     }
 
-    //main method for running server
-    public static void main(String args[]) throws Exception{
-
-    }
 }

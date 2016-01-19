@@ -1,3 +1,5 @@
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 
 /**
@@ -18,16 +20,25 @@ public class DatabaseServer {
 
     public void initServer(){
         try{
-
             //initialize DatabaseImpl object with new Database Structure
             this.database = new DatabaseImpl(new DatabaseStructure());
         }catch(RemoteException ex){ex.printStackTrace();}
     }
 
     public void runServer(){
-        while(true){
-            //main processing loop for handling clients
+        try {
+            //install a security manager
+            System.setSecurityManager(new RMISecurityManager());
+
+
+            //register it with the local naming registry
+            Naming.rebind("Datatbase", database);
+            System.out.println("Registered database");
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void closeServer(){

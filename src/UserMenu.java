@@ -32,12 +32,12 @@ public class UserMenu {
         return userInput;
     }
 
-    public int getTableID(){
+    public int getTableID(int tableSize){
         //prompts user and gets table ID
-        System.out.println("Enter ID number\n:>");
+        System.out.println("Enter ID number (0 - " + tableSize +  ") \n:>");
         int userInput = scannerIn.nextInt();
-        while(userInput <0){
-            System.out.println("Enter a valid ID number above 0");
+        while(userInput <0 || userInput > tableSize){
+            System.out.println("Enter a valid ID number between 0 and " + tableSize);
             userInput = scannerIn.nextInt();
         }
         return userInput;

@@ -1,5 +1,6 @@
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
+import java.rmi.RemoteException;
 
 /**
  * Created by Brian on 1/19/2016.
@@ -23,18 +24,36 @@ public class Client {
 
             switch(input){
                 case 1: //Read Command Chosen
+                    try {
+                        int dbSize = dbs.getSize();     //get the database size
+                        int requestID = userMenu.getTableID(dbSize);    //get address id from input
 
-                    int dbSize = dbs.getSize();     //get the database size
-                    userMenu.getTableID(dbSize);    //get address id from input
-
-
-
+                        System.out.println(dbs.readLine(requestID));
+                    }catch(RemoteException ex){System.out.println("Remote Exception on client side Read command");}
                     break;
                 case 2: //Update Command Chosen
+                    try{
+                        int dbSize = dbs.getSize();     //get the database size
+                        int requestId = userMenu.getTableID(dbSize);
+
+                        String newLine = userMenu.getUpdateLine();
+
+                        dbs.updateLine(requestId,newLine);
+
+                        System.out.println("Updated Line: " + requestId + " to '" + newLine + "'");
+
+
+                    }catch(RemoteException ex){System.out.println("RemoteException on client side Update command");}
                     break;
                 case 3: //List Command Chosen
+                    try{
+                        String listing = dbs.listDatabase();
+                        System.out.println(listing);
+                    }catch(RemoteException ex){System.out.println("RemoteException on client side Update command");}
                     break;
                 case 4: //Exit Command Chosen
+
+
                     break;
 
             }

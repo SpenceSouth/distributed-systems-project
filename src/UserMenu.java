@@ -42,4 +42,8 @@ public class UserMenu {
         }
         return userInput;
     }
+
+    public String getUpdateLine(){
+
+    }
 }

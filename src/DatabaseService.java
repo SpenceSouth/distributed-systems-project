@@ -11,4 +11,5 @@ public interface DatabaseService extends Remote {
     void updateLine(int index, String newLine)throws RemoteException;
     String listDatabase() throws RemoteException;
     void exit() throws RemoteException;
+
 }

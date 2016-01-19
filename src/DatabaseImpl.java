@@ -17,8 +17,11 @@ public class DatabaseImpl extends UnicastRemoteObject implements DatabaseService
 
     //synchronized call to get the number of lines
     @Override
-    public int getSize(){
-        return database.getSize();
+    public int getSize() {
+        synchronized(this) {
+            return database.getSize();
+
+        }
     }
 
     //synchronized call to return a line from a data structure

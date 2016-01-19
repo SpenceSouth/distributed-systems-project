@@ -14,7 +14,7 @@ public class Client {
         userMenu = new UserMenu();
 
     }
-    public  void runClient(DatabaseService dbs){
+    public void runClient(DatabaseService dbs){
         while(true){
 
             //print menu then get user input
@@ -46,19 +46,20 @@ public class Client {
     }
 
     public static void main(String argsp[]){
-       try {
-           //set RMI security manager
-           System.setSecurityManager(new RMISecurityManager());
+        Client c = new Client();
+        try {
+            //set RMI security manager
+            System.setSecurityManager(new RMISecurityManager());
 
-           //lookup and init Database
-           DatabaseService dbs = (DatabaseService) Naming.lookup("http://blah:" + "database");
+            //lookup and init Database
+            DatabaseService dbs = (DatabaseService) Naming.lookup("http://blah:" + "database");
 
-           //run main system loop
-           runClient(dbs);
+            //run main loop
+            c.runClient(dbs);
 
-       }catch(Exception ex){
-           ex.printStackTrace();
-       }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
 }

@@ -1,21 +1,24 @@
 import java.rmi.*;
+import java.rmi.server.UnicastRemoteObject;
 import java.rmi.registry.*;
 
-public class Server {
+public class Server{
 
     public static void main(String args[]){
         try{
-            System.out.println("New database");
-            Database database = new DatabaseRemote();
+
+            System.out.println("New Stub");
+            Database stub=new DatabaseRemote();
             System.out.println("Binding");
-            Naming.rebind("rmi://localhost:7499/database",database);
+            //System.setProperty("java.rmi.server.hostname","192.34.59.109");
+            Naming.rebind("rmi://192.34.59.109:7499/database", stub);
             System.out.println("Done");
 
         }
 
-        catch(Exception ex)
+        catch(Exception e)
         {
-            ex.printStackTrace();
+            e.printStackTrace();
         }
     } // end of main
 }

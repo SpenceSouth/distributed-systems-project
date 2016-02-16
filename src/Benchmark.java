@@ -64,13 +64,13 @@ public class Benchmark {
                         }
 
                         FileWriter writer = new FileWriter("data/rmi_run-" + run + "_action-" + optionString + "_clients-" + maxClients + ".txt");
-                        for (Float f : executionTime) {
+                        for (float f : executionTime) {
                             writer.write(Float.toString(f) + "\n");
                         }
                         writer.close();
 
                         FileWriter w = new FileWriter("data/bindingtime_run-" + run + "_action-" + optionString + "_clients-" + maxClients + ".txt");
-                        for (Float f : bindingTime) {
+                        for (float f : bindingTime) {
                             w.write(Float.toString(f) + "\n");
                         }
                         w.close();
@@ -85,6 +85,106 @@ public class Benchmark {
                     }
                 }
             }
+        }
+
+
+        // Data test
+        try {
+            UserMenu userMenu = new UserMenu();
+            long startTime = System.currentTimeMillis();
+            long estimatedTime = System.currentTimeMillis() - startTime;
+            ArrayList<Float> one = new ArrayList<Float>();
+            ArrayList<Float> ten = new ArrayList<Float>();
+            ArrayList<Float> twenty = new ArrayList<Float>();
+            ArrayList<Float> thirty = new ArrayList<Float>();
+            ArrayList<Float> fifty = new ArrayList<Float>();
+            ArrayList<Float> onehundred = new ArrayList<Float>();
+
+
+
+            for(int run = 0; run < 5; run++) {
+
+                startTime = System.currentTimeMillis();
+                userMenu.list(true);
+                estimatedTime = System.currentTimeMillis() - startTime;
+                one.add((float)estimatedTime);
+
+                startTime = System.currentTimeMillis();
+                for (int i = 0; i < 10; i++) {
+                    userMenu.list(true);
+                }
+                estimatedTime = System.currentTimeMillis() - startTime;
+                ten.add((float)estimatedTime);
+
+                startTime = System.currentTimeMillis();
+                for (int i = 0; i < 20; i++) {
+                    userMenu.list(true);
+                }
+                estimatedTime = System.currentTimeMillis() - startTime;
+                twenty.add((float)estimatedTime);
+
+                startTime = System.currentTimeMillis();
+                for (int i = 0; i < 30; i++) {
+                    userMenu.list(true);
+                }
+                estimatedTime = System.currentTimeMillis() - startTime;
+                thirty.add((float)estimatedTime);
+
+                startTime = System.currentTimeMillis();
+                for (int i = 0; i < 50; i++) {
+                    userMenu.list(true);
+                }
+                estimatedTime = System.currentTimeMillis() - startTime;
+                fifty.add((float)estimatedTime);
+
+                startTime = System.currentTimeMillis();
+                for (int i = 0; i < 100; i++) {
+                    userMenu.list(true);
+                }
+                estimatedTime = System.currentTimeMillis() - startTime;
+                onehundred.add((float)estimatedTime);
+
+            }
+
+            FileWriter w = new FileWriter("data/onemb.txt");
+            for (float f : one) {
+                w.write(Float.toString(f) + "\n");
+            }
+            w.close();
+
+            w = new FileWriter("data/tenmb.txt");
+            for (float f : ten) {
+                w.write(Float.toString(f) + "\n");
+            }
+            w.close();
+
+            w = new FileWriter("data/twentymb.txt");
+            for (float f : twenty) {
+                w.write(Float.toString(f) + "\n");
+            }
+            w.close();
+
+            w = new FileWriter("data/thirtymb.txt");
+            for (float f : thirty) {
+                w.write(Float.toString(f) + "\n");
+            }
+            w.close();
+
+            w = new FileWriter("data/fiftymb.txt");
+            for (float f : fifty) {
+                w.write(Float.toString(f) + "\n");
+            }
+            w.close();
+
+            w = new FileWriter("data/onehundredmb.txt");
+            for (float f : onehundred) {
+                w.write(Float.toString(f) + "\n");
+            }
+            w.close();
+
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
         }
 
     }

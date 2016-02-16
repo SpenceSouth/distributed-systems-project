@@ -18,6 +18,9 @@ public class DatabaseRemote extends UnicastRemoteObject implements Database{
 
     public int insert(String name, String address) {
 
+        long threadId = Thread.currentThread().getId();
+        System.out.println("Thread #" + threadId + " executing insert task");
+
         int result = -1;
         Connection connection = null;
         PreparedStatement ps = null;
@@ -70,6 +73,9 @@ public class DatabaseRemote extends UnicastRemoteObject implements Database{
     }
 
     public String read(int id){
+
+        long threadId = Thread.currentThread().getId();
+        System.out.println("Thread #" + threadId + " executing read task");
 
 
         String result = "";
@@ -126,6 +132,9 @@ public class DatabaseRemote extends UnicastRemoteObject implements Database{
 
     public void update(int id, String name, String address){
 
+        long threadId = Thread.currentThread().getId();
+        System.out.println("Thread #" + threadId + " executing update task");
+
 
         int result = -1;
         Connection connection = null;
@@ -176,6 +185,9 @@ public class DatabaseRemote extends UnicastRemoteObject implements Database{
     }
 
     public String list(){
+
+        long threadId = Thread.currentThread().getId();
+        System.out.println("Thread #" + threadId + " executing list task");
 
 
         String result = "";

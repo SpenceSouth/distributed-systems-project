@@ -40,10 +40,18 @@ public class UserMenu {
         System.out.println();
     }
 
+    public void read(int id) throws RemoteException {
+        database.read(id);
+    }
+
     public void list() throws RemoteException {
         System.out.println();
         System.out.println(database.list());
         System.out.println();
+    }
+
+    public void list(boolean b) throws RemoteException{
+        database.list();
     }
 
     public void update() throws RemoteException {
@@ -77,6 +85,10 @@ public class UserMenu {
 
         database.update(userInput, name, address);
 
+    }
+
+    public void update(int id, String name, String address) throws RemoteException{
+        database.update(id, name, address);
     }
 
     public int getMenuInput(){
